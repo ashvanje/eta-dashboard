@@ -69,6 +69,12 @@
             color: #999;
         }
 
+        #current-time {
+            text-align: center;
+            font-size: 100px;
+            color: rgb(9, 7, 7);
+        }
+
         @media only screen and (min-width: 576px) {
             .grid-container {
                 grid-template-columns: repeat(2, 1fr);
@@ -96,12 +102,35 @@
     <script>
         setTimeout(function() {
             location.reload();
-        }, 5000);
+        }, 30000);
     </script>
+    <script>
+        function updateTime() {
+            var currentTime = new Date();
+            var hours = currentTime.getHours();
+            var minutes = currentTime.getMinutes();
+            var seconds = currentTime.getSeconds();
+    
+            // Add leading zero if needed
+            hours = (hours < 10 ? "0" : "") + hours;
+            minutes = (minutes < 10 ? "0" : "") + minutes;
+            seconds = (seconds < 10 ? "0" : "") + seconds;
+    
+            var timeString = hours + ":" + minutes + ":" + seconds;
+    
+            // Update the element with the current time
+            document.getElementById("current-time").innerText = timeString;
+        }
+    
+        // Call updateTime() every second (1000 milliseconds)
+        setInterval(updateTime, 1000);
+    </script>
+    
 </head>
 
 <body>
 <p id="last-refreshed-time">Last Refreshed: {{ last_refreshed_time }}</p>
+<p id="current-time"></p>
 <div class="grid-container">
     {% for item in eta %}
     <div class="grid-item">
