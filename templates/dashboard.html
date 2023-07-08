@@ -107,9 +107,16 @@
     <script>
         function updateTime() {
             var currentTime = new Date();
-            var hours = currentTime.getHours();
-            var minutes = currentTime.getMinutes();
-            var seconds = currentTime.getSeconds();
+            var timezoneOffset = currentTime.getTimezoneOffset() * 60 * 1000; // Convert to milliseconds
+            var utcTime = currentTime.getTime() + timezoneOffset;
+            var timezone = 8; // UTC+8
+            var timezoneOffsetMs = timezone * 60 * 60 * 1000;
+            var localTime = utcTime + timezoneOffsetMs;
+            var localDateTime = new Date(localTime);
+    
+            var hours = localDateTime.getHours();
+            var minutes = localDateTime.getMinutes();
+            var seconds = localDateTime.getSeconds();
     
             // Add leading zero if needed
             hours = (hours < 10 ? "0" : "") + hours;
@@ -125,6 +132,7 @@
         // Call updateTime() every second (1000 milliseconds)
         setInterval(updateTime, 1000);
     </script>
+    
     
 </head>
 
