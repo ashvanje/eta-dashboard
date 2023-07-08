@@ -7,21 +7,20 @@
             background-color: #F6F6F6;
             color: #333;
             font-family: "SF Pro Text", Arial, sans-serif;
-            padding: 50px;
+            padding: 20px;
             text-align: center;
         }
 
         h1 {
             color: #333;
-            font-size: 36px;
-            margin-bottom: 30px;
-            text-shadow: none;
+            font-size: 26px;
+            margin-bottom: 20px;
         }
 
         .grid-container {
             display: grid;
             grid-gap: 20px;
-            margin-top: 50px;
+            margin-top: 20px;
         }
 
         .grid-item {
@@ -32,13 +31,17 @@
             text-align: center;
         }
 
+        .grid-item.highlight {
+            background-color: #EAF5FF;
+        }
+
         .grid-item h2 {
-            font-size: 18px;
+            font-size: 50px;
             margin-bottom: 10px;
         }
 
         .grid-item p {
-            font-size: 14px;
+            font-size: 30px;
             margin-bottom: 5px;
         }
 
@@ -50,14 +53,19 @@
 
         .grid-item ul li {
             list-style-type: none;
-            font-size: 12px;
+            font-size: 45px;
             margin-bottom: 3px;
             text-align: center;
         }
 
+        .grid-item ul li.highlight {
+            color: red;
+            font-weight: bold;
+        }
+
         #last-refreshed-time {
             text-align: right;
-            font-size: 12px;
+            font-size: 14px;
             color: #999;
         }
 
@@ -93,7 +101,6 @@
 </head>
 
 <body>
-<h1>---</h1>
 <p id="last-refreshed-time">Last Refreshed: {{ last_refreshed_time }}</p>
 <div class="grid-container">
     {% for item in eta %}
