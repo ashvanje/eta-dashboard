@@ -17,6 +17,7 @@
             margin-bottom: 20px;
         }
 
+
         .grid-container {
             display: grid;
             grid-gap: 20px;
@@ -29,6 +30,8 @@
             border-radius: 10px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             text-align: center;
+            width: 100%;
+            margin-bottom: 20px;
         }
 
         .grid-item.highlight {
@@ -36,7 +39,7 @@
         }
 
         .grid-item h2 {
-            font-size: 50px;
+            font-size: 70px;
             margin-bottom: 10px;
         }
 
@@ -72,7 +75,9 @@
         #current-time {
             text-align: center;
             font-size: 100px;
+            padding: 10px;
             color: rgb(9, 7, 7);
+            margin: 10px 0;
         }
 
         @media only screen and (min-width: 576px) {
@@ -95,9 +100,63 @@
 
         @media only screen and (min-width: 1200px) {
             .grid-container {
-                grid-template-columns: repeat(6, 1fr);
+                grid-template-columns: repeat(4, 1fr);
+            }
+
+            .grid-item {
+                background-color: #FFF;
+                padding: 20px;
+                border-radius: 10px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                text-align: center;
+                width: 100%;
+                margin: 20px;
+            }
+
+            .grid-item.highlight {
+                background-color: #EAF5FF;
+            }
+
+            .grid-item h2 {
+                font-size: 60px;
+                margin-bottom: 1px;
+            }
+
+            .grid-item p {
+                font-size: 30px;
+                margin-bottom: 10px;
+            }
+
+            .grid-item ul {
+                text-align: center;
+                margin-top: 10px;
+                padding-left: 0;
+            }
+
+            .grid-item ul li {
+                list-style-type: none;
+                font-size: 40px;
+                margin-bottom: 3px;
+                text-align: center;
+            }
+
+            .grid-item ul li.highlight {
+                color: red;
+                font-weight: bold;
+            }
+
+        }
+
+        @media only screen and (min-width: 600px) and (max-width: 991px) {
+            .grid-container {
+                grid-template-columns: repeat(5, 1fr);
             }
         }
+
+.grid-item {
+    width: 100%;
+    margin-bottom: 20px;
+}
     </style>
     <script>
         setTimeout(function() {
@@ -143,7 +202,7 @@
     {% for item in eta %}
     <div class="grid-item">
         <h2>{{ item.route }}</h2>
-        <p>{{ item.stop_name_tc }}</p>
+        <!-- <p>{{ item.stop_name_tc }}</p> -->
         <p>{{ item.stop_name_en }}</p>
         <ul>
             {% for eta in item.etas %}
