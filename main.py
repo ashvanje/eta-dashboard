@@ -9,10 +9,10 @@ app = Flask(__name__)
 
 API_URLS = [
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/18x",
-    # "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/1",
-    # "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/10",
-    # "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/5B",
-    # "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/5X",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/1",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/10",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/5B",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/5X",
     # Add more API URLs as needed
 ]
 
@@ -63,3 +63,7 @@ def dashboard():
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 3000))
     app.run(host='0.0.0.0', port=port)
+
+# https://rt.data.gov.hk/v2/transport/citybus/stop/001080
+# https://rt.data.gov.hk/v2/transport/citybus/route-stop/CTB/10/outbound
+# https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001215/10
