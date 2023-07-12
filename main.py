@@ -7,7 +7,7 @@ import os
 
 app = Flask(__name__)
 
-API_URLS = [
+HOME_API_URLS = [
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/18x",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/1",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/10",
@@ -17,7 +17,12 @@ API_URLS = [
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/904",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/971",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/002764/18",
-    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/18P",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/18P"
+    # Add more API URLs as needed
+]
+
+
+OFFICE_API_URLS = [
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001076/5X",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001033/18",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001033/18X",
@@ -54,7 +59,7 @@ def dashboard():
     now = datetime.datetime.now(datetime.timezone.utc)
 
     last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    for api_url in API_URLS:
+    for api_url in HOME_API_URLS:
         eta_data = get_eta_data(api_url)
         if eta_data:
             route = eta_data[0]["route"]
@@ -68,6 +73,29 @@ def dashboard():
                 "etas": etas
             })
     return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
+
+
+@app.route("/office")
+def dashboard():
+    formatted_eta = []
+    now = datetime.datetime.now(datetime.timezone.utc)
+
+    last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    for api_url in OFFICE_API_URLS:
+        eta_data = get_eta_data(api_url)
+        if eta_data:
+            route = eta_data[0]["route"]
+            stop_id = eta_data[0]["stop"]
+            stop_name_tc, stop_name_en = get_stop_name(stop_id)
+            etas = [format_eta_timestamp(item["eta"]) for item in eta_data]
+            formatted_eta.append({
+                "route": route,
+                "stop_name_tc": stop_name_tc,
+                "stop_name_en": stop_name_en,
+                "etas": etas
+            })
+    return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
+
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 3000))
