@@ -18,6 +18,10 @@ API_URLS = [
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/971",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/002764/18",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/18P",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001076/5X",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001033/18",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001033/18X",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001033/18P",
     # Add more API URLs as needed
 ]
 
