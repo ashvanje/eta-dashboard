@@ -76,7 +76,7 @@ def dashboard():
 
 
 @app.route("/office")
-def dashboard():
+def dashboard2():
     formatted_eta = []
     now = datetime.datetime.now(datetime.timezone.utc)
 
