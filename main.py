@@ -48,10 +48,19 @@ def get_stop_name(stop_id):
             return name_tc, name_en
     return "", ""
 
-
 def format_eta_timestamp(timestamp):
-    dt = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S%z")
-    return dt.strftime("%H:%M:%S")
+    if timestamp:
+        try:
+            dt = datetime.datetime.strptime(timestamp, "%Y-%m-%dT%H:%M:%S%z")
+            return dt.strftime("%H:%M:%S")
+        except ValueError:
+            # Handle invalid timestamp format gracefully
+            return "Invalid Timestamp"
+    else:
+        # Handle empty timestamp gracefully
+        return ""
+
+
 
 @app.route("/")
 def dashboard():
@@ -65,7 +74,9 @@ def dashboard():
             route = eta_data[0]["route"]
             stop_id = eta_data[0]["stop"]
             stop_name_tc, stop_name_en = get_stop_name(stop_id)
+            print(f"ETA print: {eta_data[0]}")
             etas = [format_eta_timestamp(item["eta"]) for item in eta_data]
+            print(f"ETA print: finish ^^^^^")
             formatted_eta.append({
                 "route": route,
                 "stop_name_tc": stop_name_tc,
