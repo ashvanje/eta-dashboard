@@ -9,11 +9,11 @@ app = Flask(__name__)
 
 HOME_API_URLS = [
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/18x",
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001003/A10",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/1",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/10",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/5B",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001080/5X",
-    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001003/A10",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/904",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001081/971",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/002764/18",
