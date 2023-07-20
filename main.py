@@ -32,10 +32,14 @@ OFFICE_API_URLS = [
 ]
 
 def get_eta_data(api_url):
-    response = requests.get(api_url)
-    if response.status_code == 200:
-        return response.json()["data"]
-    else:
+    try:
+        response = requests.get(api_url)
+        if response.status_code == 200:
+            return response.json()["data"]
+        else:
+            return []
+    except ConnectionError as e:
+        print(f"Connection error: {e}")
         return []
 
 def get_stop_name(stop_id):
