@@ -275,7 +275,7 @@
         setInterval(updateTime, 1000);
     </script>
 
-<script>
+<!-- <script>
     // Fetch weather forecast data from the API
     fetch('https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=en')
         .then(response => response.json())
@@ -307,36 +307,13 @@
         .catch(error => {
             console.error('Error fetching weather data:', error);
         });
-</script>
+</script> -->
 </head>
 
 <body>
 <!-- <p id="last-refreshed-time">Last Refreshed: {{ last_refreshed_time }}</p> -->
 <p id="current-time"></p>
 
-<div class="weather-forecast">
-    <!-- <h1>2-Day Weather Forecast</h1> -->
-    <!-- <table>
-        <thead>
-            <tr>
-                <th>Date</th>
-                <th>Max Temp (°C)</th>
-                <th>Min Temp (°C)</th>
-                <th>Weather</th>
-            </tr>
-        </thead>
-        <tbody id="weather-forecast-body">
-            {% for forecast in weather_forecast[:2] %}
-            <tr>
-                <td>{{ forecast.forecastDate }}</td>
-                <td>{{ forecast.forecastMaxtemp.value }}°C</td>
-                <td>{{ forecast.forecastMintemp.value }}°C</td>
-                <td>{{ forecast.forecastWeather }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table> -->
-</div>
 <div class="grid-container">
     {% for item in eta %}
     <div class="grid-item">
