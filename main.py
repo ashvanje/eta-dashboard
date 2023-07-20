@@ -23,6 +23,7 @@ HOME_API_URLS = [
 
 
 OFFICE_API_URLS = [
+    "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001273/18X",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001076/5X",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001033/18",
     "https://rt.data.gov.hk/v2/transport/citybus/eta/CTB/001033/18X",
@@ -66,6 +67,7 @@ def format_eta_timestamp(timestamp):
 def dashboard():
     formatted_eta = []
     now = datetime.datetime.now(datetime.timezone.utc)
+    weather_forecast = get_weather_forecast()
 
     last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     for api_url in HOME_API_URLS:
@@ -83,7 +85,7 @@ def dashboard():
                 "stop_name_en": stop_name_en,
                 "etas": etas
             })
-    return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
+    return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time, weather_forecast=weather_forecast)
 
 
 @app.route("/office")
@@ -107,6 +109,14 @@ def dashboard2():
             })
     return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
 
+
+def get_weather_forecast():
+    url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=tc"
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data.get("weatherForecast", [])
+    return []
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT', 3000))

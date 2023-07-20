@@ -3,40 +3,41 @@
 <head>
     <title>ETA Dashboard</title>
     <style> 
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-    
-    th, td {
-        padding: 8px;
-        text-align: left;
-        border-bottom: 1px solid #ddd;
-    }
-    
-    th {
-        background-color: #f2f2f2;
-    }
-       body {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        body {
             background-color: #F6F6F6;
             color: #333;
             font-family: "SF Pro Text", Arial, sans-serif;
             padding: 20px;
             text-align: center;
         }
-
+        
         h1 {
             color: #333;
             font-size: 26px;
             margin-bottom: 20px;
         }
-
+        
         .grid-container {
             display: grid;
             grid-gap: 20px;
             margin-top: 10px;
         }
-
+        
         .grid-item {
             background-color: #FFF;
             padding: 5px;
@@ -46,72 +47,104 @@
             width: 100%;
             margin-bottom: 5px;
         }
-
+        
         .grid-item.highlight {
             background-color: #EAF5FF;
         }
-
+        
         .grid-item h2 {
             font-size: 70px;
             margin-bottom: 10px;
         }
-
+        
         .grid-item p {
             font-size: 30px;
             margin-bottom: 5px;
         }
-
+        
         .grid-item ul {
             text-align: center;
             margin-top: 10px;
             padding-left: 0;
         }
-
+        
         .grid-item ul li {
             list-style-type: none;
             font-size: 50px;
             margin-bottom: 3px;
             text-align: center;
         }
-
+        
         .grid-item ul li.highlight {
             color: red;
             font-weight: bold;
         }
-
+        
         #last-refreshed-time {
             margin: 5px 0;
             font-size: 14px;
             color: #999;
         }
-
+        
+        .clock-container {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            margin-bottom: 20px;
+        }
+        
         #current-time {
             font-size: 50px;
             padding: 10px;
             color: rgb(9, 7, 7);
             margin: 0;
+            text-align: left; /* Align left */
         }
+        .clock-container {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        margin-bottom: 20px;
+    }
 
+    #current-time {
+        font-size: 50px;
+        padding: 10px;
+        color: rgb(9, 7, 7);
+        margin: 0;
+        text-align: center; /* Align left */
+        flex-shrink: 0; /* Prevent the clock from shrinking */
+    }
+
+    .weather-forecast {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-left: 20px;
+        flex-grow: 1; /* Allow the weather forecast table to grow and fill the remaining space */
+    }
+
+        
         /* Responsive CSS */
         @media only screen and (max-width: 400px) {
             .grid-container {
                 grid-template-columns: repeat(5, 1fr);
             }
-
+        
             .grid-item {
                 margin: 10px;
             }
-
+        
             .grid-item h2 {
                 font-size: 40px;
                 margin-bottom: 5px;
             }
-
+        
             .grid-item p {
                 font-size: 20px;
                 margin-bottom: 2px;
             }
-
+        
             .grid-item ul li {
                 font-size: 30px;
             }
@@ -121,26 +154,26 @@
             .grid-container {
                 grid-template-columns: repeat(3, 1fr);
             }
-
+        
             .grid-item {
                 margin: 10px;
             }
-
+        
             .grid-item h2 {
                 font-size: 40px;
                 margin-bottom: 5px;
             }
-
+        
             .grid-item p {
                 font-size: 20px;
                 margin-bottom: 2px;
             }
-
+        
             .grid-item ul li {
                 font-size: 30px;
             }
         }
-
+        
         @media only screen and (min-width: 601px) and (max-width: 1000px) {
             .grid-container {
                 grid-template-columns: repeat(3, 1fr);
@@ -153,7 +186,7 @@
                 /* margin-bottom: 10px; */
                 margin: 0;
             }
-
+        
             .grid-item p {
                 font-size: 15px;
                 margin: 0;
@@ -162,29 +195,29 @@
                 grid-template-columns: repeat(5, 1fr);
                 margin: 0;
             }
-
+        
             .grid-item {
                 margin: 10px;
             }
-
+        
             .grid-item p {
                 font-size: 15px;
                 margin-bottom: 2px;
             }
-
+        
             .grid-item ul li {
                 font-size: 30px;
             }
         }
-
-
+        
+        
         @media only screen and (min-width: 1201px){
             .grid-item h2 {
                 font-size: 40px;
                 /* margin-bottom: 10px; */
                 margin: 0;
             }
-
+        
             .grid-item p {
                 font-size: 15px;
                 margin: 0;
@@ -193,16 +226,16 @@
                 grid-template-columns: repeat(6, 1fr);
                 margin: 0;
             }
-
+        
             .grid-item {
                 margin: 10px;
             }
-
+        
             .grid-item p {
                 font-size: 15px;
                 margin-bottom: 2px;
             }
-
+        
             .grid-item ul li {
                 font-size: 30px;
             }
@@ -280,6 +313,30 @@
 <body>
 <!-- <p id="last-refreshed-time">Last Refreshed: {{ last_refreshed_time }}</p> -->
 <p id="current-time"></p>
+
+<div class="weather-forecast">
+    <!-- <h1>2-Day Weather Forecast</h1> -->
+    <!-- <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Max Temp (°C)</th>
+                <th>Min Temp (°C)</th>
+                <th>Weather</th>
+            </tr>
+        </thead>
+        <tbody id="weather-forecast-body">
+            {% for forecast in weather_forecast[:2] %}
+            <tr>
+                <td>{{ forecast.forecastDate }}</td>
+                <td>{{ forecast.forecastMaxtemp.value }}°C</td>
+                <td>{{ forecast.forecastMintemp.value }}°C</td>
+                <td>{{ forecast.forecastWeather }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table> -->
+</div>
 <div class="grid-container">
     {% for item in eta %}
     <div class="grid-item">
