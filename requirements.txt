@@ -6,3 +6,9 @@ python-dotenv
 nltk
 langchain
 gunicorn
+bs4
+
+selenium
+icalendar
+datetime
+pytz
