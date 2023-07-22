@@ -96,7 +96,7 @@ def format_eta_timestamp(timestamp):
 def dashboard():
     formatted_eta = []
     now = datetime.datetime.now(datetime.timezone.utc)
-    weather_forecast = get_weather_forecast()
+    # weather_forecast = get_weather_forecast()
 
     last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     for api_url in HOME_API_URLS:
@@ -114,7 +114,7 @@ def dashboard():
                 "stop_name_en": stop_name_en,
                 "etas": etas
             })
-    return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time, weather_forecast=weather_forecast)
+    return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
 
 
 @app.route("/office")
