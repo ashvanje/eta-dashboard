@@ -96,7 +96,10 @@ def format_eta_timestamp(timestamp):
 def dashboard():
     formatted_eta = []
     now = datetime.datetime.now(datetime.timezone.utc)
-    # weather_forecast = get_weather_forecast()
+    weather_forecast_arr = get_weather_forecast()
+    if(get_weather_forecast):
+        weather_forecast = weather_forecast_arr[:3]
+    current_weather = get_current_weather()
 
     last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     for api_url in HOME_API_URLS:
@@ -114,7 +117,7 @@ def dashboard():
                 "stop_name_en": stop_name_en,
                 "etas": etas
             })
-    return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
+    return render_template("eta-dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time, weather_forecast=weather_forecast, current_weather = current_weather)
 
 
 @app.route("/office")
@@ -136,11 +139,33 @@ def dashboard2():
                 "stop_name_en": stop_name_en,
                 "etas": etas
             })
-    return render_template("dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
+    return render_template("eta-dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time)
 
 
+def get_current_weather():
+    url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+    
+    try:
+        response = requests.get(url)
+        if response.status_code == 200:
+            data = response.json()
+            return data
+        return []
+        # Process the response data here
+        # ...
+
+        return response.json()  # Or whatever response data you need to return
+    except requests.exceptions.ReadTimeout as e:
+        # Handle the ReadTimeout error
+        print("The request to the weather API timed out. Please try again later.")
+        return None  # Or any other appropriate action you want to take
+    except requests.exceptions.RequestException as e:
+        # Handle any other request-related errors
+        print(f"An error occurred during the request: {e}")
+        return None  # Or any other appropriate action you want to take
+    
 def get_weather_forecast():
-    url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php"
+    url = "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=fnd&lang=tc"
     
     try:
         response = requests.get(url)

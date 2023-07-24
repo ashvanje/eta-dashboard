@@ -1,0 +1,882 @@
+body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    margin: 0;
+
+    display: flex;
+    /* align-items: center; */
+    /* justify-content: center; */
+    height: 100vh;
+    padding: 0;
+    background-color: #f6f6f6;
+}
+
+
+.container {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* Add this line */
+
+}
+
+.row {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: -12px;
+}
+
+.col {
+    width: 48%;
+    /* padding: 12px; */
+}
+
+.small-box {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: auto;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.box {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 800px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+
+}
+
+.box2 {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 800px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    /* font-size: 14px; */
+}
+
+
+.box3 {
+    background-color: #ffffff;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    height: 800px;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    /* font-size: 14px; */
+}
+
+
+h1 {
+    /* font-size: 24px; */
+    margin-bottom: 20px;
+    font-size: 14px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin-bottom: 20px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+p {
+    color: #666;
+    margin-top: 5px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    table-layout: fixed;
+}
+
+th,
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+    word-wrap: break-word;
+}
+
+th {
+    background-color: #f6f6f6;
+}
+
+.filter-input {
+    margin-bottom: 12px;
+}
+
+@media (max-width: 1024px) {
+    .col {
+        width: 100%;
+    }
+}
+
+.submit-button:disabled {
+    background-color: #4CAF50;
+    cursor: not-allowed;
+}
+
+.due-date-container {
+    display: flex;
+    align-items: center;
+}
+
+.due-date-input {
+    margin-right: 12px;
+    width: 350px;
+    /* Adjust the width here as needed */
+}
+
+.submit-button {
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 8px;
+    width: 18%;
+}
+
+.notepad-input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-size: 14px; */
+
+    width: -webkit-fill-available;
+    /* height: -webkit-fill-available; */
+    height: 350px;
+}
+
+.due-date-input,
+.duration-input,
+.task-content-input,
+.labels-input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-size: 14px; */
+}
+
+.add-task-input {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    /* font-size: 14px; */
+    width: 500px
+}
+
+.add-task-labels-input {
+    height: auto;
+    resize: vertical;
+    overflow-wrap: break-word;
+    width: 300px;
+}
+
+.labels-input {
+    height: auto;
+    resize: vertical;
+    overflow-wrap: break-word;
+    width: -webkit-fill-available;
+}
+
+.duration-input {
+    width: 100%
+}
+
+.task-content-input {
+    width: 250px;
+    height: auto;
+    resize: vertical;
+    overflow-wrap: break-word;
+}
+
+th:nth-child(1),
+td:nth-child(1) {
+    width: 25%;
+}
+
+th:nth-child(2) {
+    width: 20%;
+}
+
+td:nth-child(2) {
+    text-align: center;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+    width: 5%;
+    /* display: flex; */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+    width: 20%;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+    width: 5%;
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+
+}
+
+th:nth-child(6),
+td:nth-child(6) {
+    width: 20%;
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+
+}
+
+th:nth-child(7),
+td:nth-child(7) {
+    width: 2.5%;
+}
+
+th:nth-child(8),
+td:nth-child(8) {
+    width: 2.5%;
+}
+
+.today-button {
+    padding: 6px 12px;
+    /* font-size: 12px; */
+    border-radius: 4px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 8px;
+}
+
+.today-button:hover {
+    background-color: #45a049;
+}
+
+.weather {
+    font-size: 8px;
+}
+
+
+/* ...existing styles... */
+
+@media screen and (min-width: 390px) and (max-width: 599px) {
+    .box {
+        width: 350px;
+        height: 450px;
+        margin-right: 2%;
+    }
+
+    .box2 {
+        /* width: 90%;
+        height: 400px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .notes {
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+    }
+
+    .box3 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+
+    .small-box {
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        max-width: 1280px;
+        /* Adjust the max-width to match the desired container width */
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Use space-between to separate the boxes */
+    }
+
+    .box4 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        /* margin-bottom: 20px; */
+        /* width: 45%; */
+        font-size: 12px;
+        height: 600px;
+    }
+
+    .box5 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 800px;
+    }
+
+
+    .box6 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 200px;
+    }
+
+
+th:nth-child(6),
+td:nth-child(6) {
+    width: 0%;
+    /* display: flex;
+    justify-content: center; */
+    text-align: center;
+
+}
+
+th:nth-child(7),
+td:nth-child(7) {
+    width: 0%;
+}
+
+th:nth-child(8),
+td:nth-child(8) {
+    width: 0%;
+}
+}
+
+
+@media screen and (min-width: 600px) and (max-width: 1279px) {
+    .box {
+        width: 350px;
+        height: 450px;
+        margin-right: 2%;
+    }
+
+    .box2 {
+        /* width: 90%;
+        height: 400px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .notes {
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+    }
+
+    .box3 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+
+    .small-box {
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        max-width: 1280px;
+        /* Adjust the max-width to match the desired container width */
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Use space-between to separate the boxes */
+    }
+
+    .box4 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        /* margin-bottom: 20px; */
+        /* width: 45%; */
+        font-size: 12px;
+        height: 600px;
+    }
+
+    .box5 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 800px;
+    }
+
+
+    .box6 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 200px;
+    }
+
+
+    th:nth-child(1),
+    td:nth-child(1) {
+        font-size: 24px;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+        display: none;
+    
+    }
+    
+
+    th:nth-child(4),
+    td:nth-child(4) {
+        display: none;
+    
+    }
+    
+th:nth-child(6),
+td:nth-child(6) {
+    display: none;
+
+}
+
+th:nth-child(7),
+td:nth-child(7) {
+    /* display: none; */
+    width: 2.5%;
+}
+
+th:nth-child(8),
+td:nth-child(8) {
+
+    width: 2.5%;
+}
+}
+
+/* For MacBook 13 Air screen */
+@media screen and (min-width: 1280px) and (max-width: 1300px) {
+    .box {
+        width: 350px;
+        height: 450px;
+        margin-right: 2%;
+    }
+
+    .box2 {
+        /* width: 90%;
+        height: 400px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .notes {
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+    }
+
+    .box3 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+
+    .small-box {
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        max-width: 1280px;
+        /* Adjust the max-width to match the desired container width */
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Use space-between to separate the boxes */
+    }
+
+    .box4 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        /* margin-bottom: 20px; */
+        /* width: 45%; */
+        font-size: 12px;
+        height: 600px;
+    }
+
+    .box5 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 800px;
+    }
+
+
+    .box6 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 200px;
+    }
+}
+
+
+
+@media screen and (min-width: 1301px) {
+    /* .box {
+        width: 350px;
+        height: 450px;
+        margin-right: 2%;
+    } */
+
+    .box {
+        width: 28%;
+        height: 450px;
+        margin: 1%;
+    }
+
+    .notes {
+        width: -webkit-fill-available;
+        height: -webkit-fill-available;
+    }
+
+    .box2 {
+        /* width: 90%;
+        height: 400px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .box3 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+
+    .small-box {
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+    }
+
+    .container {
+        max-width: 2100px;
+        /* Adjust the max-width to match the desired container width */
+        margin: 0 auto;
+        padding: 20px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        /* Use space-between to separate the boxes */
+    }
+
+    .box4 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        /* margin-bottom: 20px; */
+        /* width: 45%; */
+        font-size: 12px;
+        height: 600px;
+    }
+
+    .box5 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 800px;
+    }
+
+
+
+    .box6 {
+        /* width: 90%;
+        height: 800px;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        font-size: 14px; */
+        background-color: #ffffff;
+        border-radius: 5px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        height: auto;
+        overflow-y: auto;
+        margin-bottom: 20px;
+        /* width: 45%; */
+        font-size: 12px;
+        height: 200px;
+    }
+}
+
+
+.time-block-grid {
+    display: grid;
+    gap: 1px;
+    /* Adjust the gap between rows as needed */
+    width: 100px;
+}
+
+.time-left-until-7pm,
+.time {
+    border: 1px solid #ddd;
+    padding: 5px;
+    text-align: center;
+    width: 90%;
+}
+
+.time {
+    width: 90%;
+    min-height: 20px;
+    /* Adjust the height of each time block as needed */
+}
+
+.leftcol {
+    width: 2400px;
+}
+
+.rightcol {
+    width: 10px;
+}
+
+.rightContainer {
+    width: 400px;
+}
+
+.dummyContainer {
+    width: 400px;
+}
+
+
+.outerContainer {
+    width: 100%
+}
