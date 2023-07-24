@@ -53,9 +53,8 @@
     </div>
     {% for weather in weather_forecast %}
     <div class="weather">
-        <p>{{ weather.week }} {{ weather.forecastMintemp.value }} - {{ weather.forecastMaxtemp.value }} C {{ weather.forecastMaxrh.value }}%</p>
+        <p><b>{{ weather.week }} {{ weather.forecastMintemp.value }} - {{ weather.forecastMaxtemp.value }} C {{ weather.forecastMaxrh.value }}%</b></p>
         <p>{{ weather.forecastWeather }}</p>
-        <p></p>
     </div>
     {% endfor %}
 

@@ -207,13 +207,8 @@ h1 {
 
 @media only screen and (min-width: 1001px) and (max-width: 1200px) {
     .grid-item h2 {
-        font-size: 40px;
+        font-size: 30px;
         /* margin-bottom: 10px; */
-        margin: 0;
-    }
-
-    .grid-item p {
-        font-size: 15px;
         margin: 0;
     }
 
@@ -223,16 +218,16 @@ h1 {
     }
 
     .grid-item {
-        margin: 10px;
+        margin: 3px;
     }
 
     .grid-item p {
-        font-size: 15px;
-        margin-bottom: 2px;
+        font-size: 10px;
+        /* margin-bottom: 2px; */
     }
 
     .grid-item ul li {
-        font-size: 30px;
+        font-size: 20px;
     }
 }
 
