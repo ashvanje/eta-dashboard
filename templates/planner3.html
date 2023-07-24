@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Planner</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+    
+    <div class="container">
+        
+        <!-- ^^^^^^^^^^^^^ +++++++++++++++++ -->
+
+        <div class="small-box">
+            <input type="text" id="addTask" class="add-task-input" placeholder="Add Task">
+                    <input type="checkbox" id="addTask-followup">
+            <button class="submit-button" onclick="createTask(event, this, '')">Save</button>
+            <button class="submit-button" onclick="createTask(event, this, 'today')">Tdy</button>
+            <br>
+
+            <textarea id="addTask-labels" class="add-task-labels-input"
+            placeholder="Enter labels" rows="1"
+            oninput="autoExpand(this)"></textarea>
+
+        </div>
+
+        <div class="col">
+            {% for project, project_tasks in tasks_by_project.items() %}
+            {% if project == 'TODAY' or project == 'TOP3'%}
+
+            {% if project == 'TODAY' %}
+            <div class="box4">
+                {% elif project == 'TOP3' %}
+                <div class="box6">
+                    {% else %}
+                    <div class="box6">
+                        {% endif %}
+                        <h1>Todoist Tasks - {{ project }}</h1>
+                        <input type="text" id="project-filter-{{ project }}" class="filter-input"
+                            placeholder="Filter by Task">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Task</th>
+                                    <th>Today</th>
+                                    <th>Duration</th>
+                                    <th>Due Date</th>
+                                    <th>Follow Up</th>
+                                    <th>Labels</th>
+                                    <th>Submit</th>
+                                    <th>Close</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for task in project_tasks %}
+                                <tr data-project="{{ task.project_name }}">
+                                    <td ondblclick="editTaskContent(this)">
+                                        <div class="task-content">{{ task.content }}</div>
+                                        <input type="text" id="task-content-{{ task.id }}" class="task-content-input"
+                                            value="{{ task.content }}" style="display: none;">
+                                    </td>
+                                    <td>
+                                        <button class="submit-button"
+                                            onclick="updateToday(event, this,'{{ task.id }}')">Tdy</button>
+                                        <button class="submit-button"
+                                            onclick="updateTomorrow(event, this,'{{ task.id }}')">Tmr</button>
+                                            <button class="submit-button"
+                                                onclick="plusOneDay(event, this,'{{ task.id }}')">+1</button>
+                                    </td>
+                                    <td>
+                                        <input type="text" id="duration-{{ task.id }}" class="duration-input"
+                                            value="{{ task.duration.amount }}">
+                                    </td>
+                                    <td>
+                                        <div class="due-date-container">
+                                            <input type="datetime-local" id="due-date-{{ task.id }}"
+                                                class="due-date-input" value="{{ task.due.datetime }}">
+                                        </div>
+                                    </td>
+                                    <td>
+                                        <input type="checkbox" id="follow-up-{{ task.id }}" {% if 'Followup' in
+                                            task.labels %}checked{% endif %}>
+                                    </td>
+                                    <td>
+                                        <textarea id="labels-{{ task.id }}" class="labels-input"
+                                            placeholder="Enter labels" rows="1"
+                                            oninput="autoExpand(this)">{% for label in task.labels %}{{ label }}&#10;{% endfor %}</textarea>
+                                    </td>
+                                    <td>
+                                        <button class="submit-button"
+                                            onclick="updateDueDate(event, this,'{{ task.id }}')">Y</button>
+                                    </td>
+                                    <td>
+                                        <button class="submit-button"
+                                            onclick="closeTask(event, this,'{{ task.id }}')">Y</button>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+
+
+                <div class="col">
+                    {% for project, project_tasks in tasks_by_project.items() %}
+                    {% if project == 'PwC _New_' %}
+
+                    {% if project == 'TODAY' or project == 'TOP3'%}
+                    <div class="box4">
+                        {% elif project == 'PwC _New_' %}
+                        <div class="box5">
+                            {% else %}
+                            <div class="box6">
+                                {% endif %}
+                                <h1>Todoist Tasks - {{ project }}</h1>
+                                <input type="text" id="project-filter-{{ project }}" class="filter-input"
+                                    placeholder="Filter by Task">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <th>Task</th>
+                                            <th>Today</th>
+                                            <th>Duration</th>
+                                            <th>Due Date</th>
+                                            <th>Follow Up</th>
+                                            <th>Labels</th>
+                                            <th>Submit</th>
+                                            <th>Close</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {% for task in project_tasks %}
+                                        <tr data-project="{{ task.project_name }}">
+                                            <td ondblclick="editTaskContent(this)">
+                                                <div class="task-content">{{ task.content }}</div>
+                                                <input type="text" id="task-content-{{ task.id }}"
+                                                    class="task-content-input" value="{{ task.content }}"
+                                                    style="display: none;">
+                                            </td>
+                                            <td>
+                                                <button class="submit-button"
+                                                    onclick="updateToday(event, this,'{{ task.id }}')">Tdy</button>
+                                                <button class="submit-button"
+                                                    onclick="updateTomorrow(event, this,'{{ task.id }}')">Tmr</button>
+                                                <button class="submit-button"
+                                                    onclick="plusOneDay(event, this,'{{ task.id }}')">+1</button>
+                                            </td>
+                                            <td>
+                                                <input type="text" id="duration-{{ task.id }}" class="duration-input"
+                                                    value="{{ task.duration.amount }}">
+                                            </td>
+                                            <td>
+                                                <div class="due-date-container">
+                                                    <input type="datetime-local" id="due-date-{{ task.id }}"
+                                                        class="due-date-input" value="{{ task.due.datetime }}">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <input type="checkbox" id="follow-up-{{ task.id }}" {% if 'Followup' in
+                                                    task.labels %}checked{% endif %}>
+                                            </td>
+                                            <td>
+                                                <textarea id="labels-{{ task.id }}" class="labels-input"
+                                                    placeholder="Enter labels" rows="1"
+                                                    oninput="autoExpand(this)">{% for label in task.labels %}{{ label }}&#10;{% endfor %}</textarea>
+                                            </td>
+                                            <td>
+                                                <button class="submit-button"
+                                                    onclick="updateDueDate(event, this,'{{ task.id }}')">Y</button>
+                                            </td>
+                                            <td>
+                                                <button class="submit-button"
+                                                    onclick="closeTask(event, this,'{{ task.id }}')">Y</button>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                        <!-- ^^^^^^^^^^^^^ ------------------- -->
+                        
+
+                    </div>
+                    
+                    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

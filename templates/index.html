@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Hacker News & Todoist Dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="scrapedTitle">Loading...</div>
+    <script>
+        // Call the Python function and update the placeholder element with the result
+        const title = "{{ title }}";
+        document.getElementById("scrapedTitle").textContent = title;
+    </script>
+    <script src="https://unpkg.com/ical.js"></script>
+
+    <div class="container">
+        <div class="row">
+            <!-- <div class="col"> -->
+                <div class="box">
+                    <h1>LIHKG Posts</h1>
+                    <ul>
+                        {% for post in lihkg_post_titles %}
+                        <li>
+                            <a href="{{ post.link }}">{{ post.title }}</a> - {{ post.time }} - {{ post.upvote }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+                <div class="box">
+                    <h1>Reddit Posts</h1>
+                    <ul>
+                        {% for post in reddit_posts %}
+                        <li>
+                            <a href="{{ post.permalink }}">{{ post.title }}</a> - {{ post.subreddit_name }} - ({{ post.upvotes }})
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h1>Reddit Posts - Askreddit top of the week</h1>
+                    <ul>
+                        {% for post in reddit_posts_askreddit %}
+                        <li>
+                            <a href="{{ post.permalink }}">{{ post.title }}</a> - {{ post.subreddit_name }} - {{ post.upvotes }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="box">
+                    <h1>Instagram Stories</h1>
+                    <ul>
+                        
+                    </ul>
+                </div>
+
+
+                <div class="box">
+                    <div class="weather">
+                    <h1>3-Day Weather Forecast</h1>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Max Temp (°C)</th>
+                                <th>Min Temp (°C)</th>
+                                <th>Weather</th>
+                            </tr>
+                        </thead>
+                        <tbody id="weather-forecast-body">
+                            {% for forecast in weather_forecast[:3] %}
+                            <tr>
+                                <td>{{ forecast.forecastDate }}</td>
+                                <td>{{ forecast.forecastMaxtemp.value }}°C</td>
+                                <td>{{ forecast.forecastMintemp.value }}°C</td>
+                                <td>{{ forecast.forecastWeather }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                </div>
+            <!-- </div> -->
+            <!-- <div class="col"> -->
+
+                <!-- <div class="box">
+                    <h1>Meeting Time Blocks</h1>
+                    <form id="meeting-time-form" onsubmit="saveMeetingTimeBlocks(event)">
+                        <div>
+                            <label for="start-time">Start Time:</label>
+                            <input type="time" id="start-time" required>
+                        </div>
+                        <div>
+                            <label for="end-time">End Time:</label>
+                            <input type="time" id="end-time" required>
+                        </div>
+                        <button type="submit">Save</button>
+                    </form>
+                </div>
+
+                <div class="box">
+                    <h1>Outlook Calendar</h1>
+                    <a href="https://partner.outlook.cn/calendar/view/day">Today</a>
+                    <iframe src="https://partner.outlook.cn/calendar/view/day" style="width:100%; height:600px;"></iframe>
+                </div>
+
+                <div class="box">
+                    <h1>Google Calendar</h1>
+                    <iframe src="https://calendar.google.com/calendar/embed?src=81cs0kbhi51u8rfv3gn65u2ks8%40group.calendar.google.com&ctz=Asia%2FHong_Kong" style="border: 0" width="800" height="600" frameborder="0" scrolling="no"></iframe>
+                </div> -->
+            <!-- </div> -->
+            <!-- <div class="box">
+                <div id="agenda"></div>
+                <script>
+                    fetch('/api/agenda')
+                        .then(response => response.json())
+                        .then(data => {
+                            const agendaElement = document.getElementById('agenda');
+                            if (data.length === 0) {
+                                agendaElement.textContent = 'No events today.';
+                            } else {
+                                const ul = document.createElement('ul');
+                                data.forEach(event => {
+                                    const li = document.createElement('li');
+                                    li.textContent = event.summary + event.start_date;
+                                    ul.appendChild(li);
+                                });
+                                agendaElement.appendChild(ul);
+                            }
+                        })
+                        .catch(error => {
+                            console.error('Error fetching agenda data:', error);
+                        });
+                </script>
+            </div> -->
+            <!-- <div class="col"> -->
+                <div class="box">
+                    <h1>Hacker News Top Posts</h1>
+                    <ul>
+                        {% for post in posts %}
+                        <li>
+                            <a href="{{ post.url }}">{{ post.title }} - {{post.score}}</a>
+                            {% if post.comment %}
+                            <p>{{ post.comment | safe }}</p>
+                            {% endif %}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            <!-- </div> -->
+            <div class="box">
+                <h1>Top News</h1>
+                <ul>
+                    {% for new in news %}
+                    <li>
+                        <a href="{{ new.url }}">{{ new.title }} - {{new.source}}</a>
+                        <!-- {% if new.description %}
+                        <p>{{ new.description | safe }}</p>
+                        {% endif %} -->
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+    <script>
+        // Find all the <a> tags and add target="_blank" attribute to open links in a new tab
+        const allLinks = document.querySelectorAll('a');
+        allLinks.forEach(link => link.setAttribute('target', '_blank'));
+    </script>
+</body>
+</html>
