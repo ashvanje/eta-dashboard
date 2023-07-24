@@ -94,30 +94,33 @@ def format_eta_timestamp(timestamp):
 
 @app.route("/")
 def dashboard():
-    formatted_eta = []
-    now = datetime.datetime.now(datetime.timezone.utc)
-    weather_forecast_arr = get_weather_forecast()
-    if(get_weather_forecast):
-        weather_forecast = weather_forecast_arr[:3]
-    current_weather = get_current_weather()
+    try:
+        formatted_eta = []
+        now = datetime.datetime.now(datetime.timezone.utc)
+        weather_forecast_arr = get_weather_forecast()
+        if(get_weather_forecast):
+            weather_forecast = weather_forecast_arr[:3]
+        current_weather = get_current_weather()
 
-    last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
-    for api_url in HOME_API_URLS:
-        eta_data = get_eta_data(api_url)
-        if eta_data:
-            route = eta_data[0]["route"]
-            stop_id = eta_data[0]["stop"]
-            stop_name_tc, stop_name_en = get_stop_name(stop_id)
-            print(f"ETA print: {eta_data[0]}")
-            etas = [format_eta_timestamp(item["eta"]) for item in eta_data]
-            print(f"ETA print: finish ^^^^^")
-            formatted_eta.append({
-                "route": route,
-                "stop_name_tc": stop_name_tc,
-                "stop_name_en": stop_name_en,
-                "etas": etas
-            })
-    return render_template("eta-dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time, weather_forecast=weather_forecast, current_weather = current_weather)
+        last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        for api_url in HOME_API_URLS:
+            eta_data = get_eta_data(api_url)
+            if eta_data:
+                route = eta_data[0]["route"]
+                stop_id = eta_data[0]["stop"]
+                stop_name_tc, stop_name_en = get_stop_name(stop_id)
+                print(f"ETA print: {eta_data[0]}")
+                etas = [format_eta_timestamp(item["eta"]) for item in eta_data]
+                print(f"ETA print: finish ^^^^^")
+                formatted_eta.append({
+                    "route": route,
+                    "stop_name_tc": stop_name_tc,
+                    "stop_name_en": stop_name_en,
+                    "etas": etas
+                })
+        return render_template("eta-dashboard.html", eta=formatted_eta, last_refreshed_time=last_refreshed_time, weather_forecast=weather_forecast, current_weather = current_weather)
+    except:
+        return render_template("eta-dashboard.html", eta=[], last_refreshed_time='', weather_forecast=[], current_weather = {})
 
 
 @app.route("/office")
