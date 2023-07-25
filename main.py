@@ -97,11 +97,13 @@ def dashboard():
     try:
         formatted_eta = []
         now = datetime.datetime.now(datetime.timezone.utc)
-        weather_forecast_arr = get_weather_forecast()
-        if(get_weather_forecast):
-            weather_forecast = weather_forecast_arr[:3]
-        current_weather = get_current_weather()
-
+        # weather_forecast_arr = get_weather_forecast()
+        # if(get_weather_forecast):
+        #     weather_forecast = weather_forecast_arr[:3]
+        # current_weather = get_current_weather()
+        weather_forecast = []
+        current_weather = {}
+        
         last_refreshed_time = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
         for api_url in HOME_API_URLS:
             eta_data = get_eta_data(api_url)
